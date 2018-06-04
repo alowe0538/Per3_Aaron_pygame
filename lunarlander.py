@@ -5,6 +5,7 @@ from random import *
 import pygame
 from pygame import *
 from math import *
+from lightbuttoncontrols import *
 
 init()  # the pygame module
 
@@ -70,34 +71,22 @@ while not crashed:
     for event in pygame.event.get():
         if event.type == QUIT:
             crashed = True
-        if event.type == KEYDOWN:
-            if event.key == K_ESCAPE:
-                crashed = True
-            if event.key == K_r:
-                x = randint(z, Z)
-                y = z
-                u = v = 0
-                r = 5
-                cg = w
-                wi = n
-                f = INITIAL_FUEL
-                game_status = BLANK_MSG
-            if event.key == K_SPACE and f > 0:
-                v -= a
-                f -= 5
-                cl = w
-                cr = w
-                ss = se
-            if event.key == K_LEFT and f > 0:
-                u = u + a
-                f = f - 5
-                cl = w
-                ss = se
-            if event.key == K_RIGHT and f > 0:
-                u = u - a
-                f = f - 5
-                cr = w
-                ss = se
+    if main_thruster_activated() and f > 0:
+        v -= a
+        f -= 5
+        cl = w
+        cr = w
+        ss = se
+    if left_thruster_activated() and f > 0:
+        u = u + a
+        f = f - 5
+        cl = w
+        ss = se
+    if right_thruster_activated() and f > 0:
+        u = u - a
+        f = f - 5
+        cr = w
+        ss = se
     if game_status == BLANK_MSG and (x < 0 or x > INITIAL_FUEL):
         x = x - (abs(x) / x) * INITIAL_FUEL
     if game_status == BLANK_MSG:
