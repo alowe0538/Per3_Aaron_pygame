@@ -95,11 +95,13 @@ while not crashed:
         y = (10 * y + v) / 10
     if (y + 8) >= my[pl] and x > mx[pl - 1] and x < mx[pl] and v < 30:
         game_status = LANDED_MSG
+        landed()
     for i in range(mn):
         if game_status == BLANK_MSG and mx[i] <= x and mx[i + 1] >= x and (my[i] <= y or my[i + 1] <= y):
             cr = 1
             cg = BLACK
             game_status = CRASH_MSG
+            crashed()
     screen.fill(BLACK)
     draw.line(screen, w, (mx[pl - 1], my[pl - 1]), (mx[pl], my[pl]), 3)
     if wi > 10 and game_status == CRASH_MSG:
