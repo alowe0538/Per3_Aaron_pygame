@@ -10,7 +10,7 @@ right_light=LED(26)
 middle_light=LED(22)
 left_light=LED(27)
  
-def main_thruster_activated()
+def main_thruster_activated():
     return main_thruster.is_pressed()
  
 def left_thruster_activate():

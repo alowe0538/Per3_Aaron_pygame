@@ -51,8 +51,6 @@ key.set_repeat(o)
 P = 0.01
 pygame.font.init()
 status_font = pygame.font.SysFont('courier', 20)
-audio = pyaudio.PyAudio()
-stream = audio.open(rate=T, channels=1, format=pyaudio.paInt8, output=True)
 N = n * 4
 mn = 40
 st = array.array('b', (max(p, min(q, int(T * sin(i * P)))) for i in range(N))).tostring()
@@ -121,7 +119,6 @@ while not crashed:
     screen.blit(sp, (0, INITIAL_FUEL - 12))
     cl = BLACK
     cr = BLACK
-    stream.write(ss)
     for i in range(mn):
         draw.line(screen, w, (mx[i], my[i]), (mx[i + 1], my[i + 1]))
     sp = status_font.render(game_status, 0, w)
@@ -131,4 +128,3 @@ while not crashed:
     ss = BLANK_MSG
 pygame.quit()
 stream.close()
-audio.terminate()
